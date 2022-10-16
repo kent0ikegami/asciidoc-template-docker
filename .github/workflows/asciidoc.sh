@@ -22,6 +22,6 @@ cp -r -f "./src/resource/fonts/" ${CURRENT_PATH}/
 
 asciidoctor -D ./dist/ -o index.html -r asciidoctor-diagram ./src/index.adoc
 
-asciidoctor-pdf -D ./dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram ./src/index.adoc
+asciidoctor-pdf -a source-highlighter=pygments -r ./src/resource/patch-prawn.rb -D ./dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram ./src/index.adoc
 # -a pdf-theme=./src/resource/theme-pdf.yml -a pdf-fontsdir=./src/resource/fonts
 cp -rf ./src/images/ ./dist/images/
