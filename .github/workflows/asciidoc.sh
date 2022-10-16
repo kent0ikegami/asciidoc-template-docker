@@ -21,6 +21,6 @@ cp -r -f "${ASCIIDOCTOR_PDF_DIR}/data/fonts/" ${CURRENT_PATH}/
 
 asciidoctor -B ${CURRENT_PATH}/src/ -D ${CURRENT_PATH}/dist/ -o index.html -r asciidoctor-diagram index.adoc
 
-# asciidoctor-pdf -a pdf-theme=assets/theme-pdf.yml -a pdf-fontsdir=assets/fonts -B ${CURRENT_PATH}/src/ -D ${CURRENT_PATH}/dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram index.adoc
-
+asciidoctor-pdf -B ${CURRENT_PATH}/src/ -D ${CURRENT_PATH}/dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram index.adoc
+#  -a pdf-theme=assets/theme-pdf.yml -a pdf-fontsdir=assets/fonts
 cp -rf ./src/images/ ./dist/images/
