@@ -28,6 +28,25 @@ vscode拡張
 npm run install
 ```
 
+## ダイアグラム
+
+ダイアグラムの作成にkrokiを使用します。
+vscodeのasciidoctorの設定で、"asciidoc.extensions.enableKroki": true, とします。
+
+https://kroki.io のサーバを利用する場合は、index.adocから以下の行を削除してください。
+
+```
+:kroki-server-url: http://localhost:8000
+```
+
+ローカルのkrokiサーバを利用する場合は、以下のコマンドでサーバを立ち上げてください。
+
+```
+docker run -p8000:8000 yuzutech/kroki
+```
+
+vscodeのasciidoctorの設定で、Change Preview Security Settings → Allow insecure local content　としてください。プレビュー時のローカルのhttp通信を許可します。
+
 ## License
 
 MIT License

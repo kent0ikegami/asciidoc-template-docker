@@ -1,0 +1,116 @@
+# テーマガイド　https://github.com/asciidoctor/asciidoctor-pdf/blob/main/docs/theming-guide.adoc#keys-literal
+# https://takumon.github.io/asciidoc-syntax-quick-reference-japanese-translation/
+# https://itcweb.cc.affrc.go.jp/affrit/_media/documents/guide/asciidoc/asciidoc-start.pdf
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/blocks/
+
+extends: default-with-font-fallbacks
+font:
+  catalog:
+    merge: true
+    # MigMix 2P
+    MigMix 2P:
+      normal: migmix-2p-regular.ttf
+      bold: migmix-2p-bold.ttf
+      italic: migmix-2p-regular.ttf
+      bold_italic: migmix-2p-bold.ttf
+    GenShinGothic-P:
+      normal: GenShinGothic-Medium.ttf
+      bold: GenShinGothic-Bold.ttf
+      italic: GenShinGothic-Medium.ttf
+      bold_italic: GenShinGothic-Bold.ttf
+  fallbacks: [MigMix 2P, M+ 1p Fallback, Noto Emoji]
+page:
+  margin: [0.8in, 0.4in, 0.4in, 0.4in] #[0.9in, 0.9in, 0.9in, 0.9in] # [top,right,bottom,left]
+base:
+  align: left
+  font_color: 000000
+  font_family: MigMix 2P
+  line_height_length: 15.5
+  line_height: $base_line_height_length / $base_font_size
+role:
+  l:
+    font_size: floor($base_font_size * 1.2)
+    font_style: bold
+  red:
+    font_color: ff0000
+  yellow:
+    font_color: ffff00
+  green:
+    font_color: 008000
+  aqua:
+    font_color: 00ffff
+  blue:
+    font_color: 0000ff
+  navy:
+    font_color: 000080
+code:
+  font-size: $base_font_size * 0.9
+codespan:
+  font_color: eb3f6b
+  background_color: f0f0f0
+  border_color: c7c7c7
+  border_radius: 2
+  border_width: 0.5
+  font_family: $base_font_family
+  border-offset: 2
+title_page:
+  background_image: title-page-back02.png
+  align: center
+  title:
+    top: 25%
+    font_size: 40
+    font_style: bold
+    font_color: 9BA0A4
+    line_heght: 2.0
+  subtitle:
+    font_size: 18
+    font_style: bold
+    font_color: 000000
+    line_heght: 2.0
+    margin_top: 0.5cm
+  authors:
+    font_color: 000000
+    margin_top: 12.5cm
+  revision:
+    font_color: 000000
+    margin_top: -2cm
+caption:
+  align: center
+heading:
+  chapter:
+    break-before: auto
+  font_family: $base_font_family
+  font_style: bold
+  font_color: 2D466B
+  h1_font_size: floor($base_font_size * 1.6)
+  h2_font_size: floor($base_font_size * 1.4)
+  h3_font_size: round($base_font_size * 1.1)
+  h4_font_size: $base_font_size
+  h5_font_size: $base_font_size
+  h6_font_size: $base_font_size
+table:
+  head:
+    font_color: $base_font_color
+    background_color: [185,174,166]
+  foot:
+    background_color: [185,174,166]
+  cell_padding: [3, 3, 3, 3]
+header:
+  border-color: #aaaaaa
+  border-style: double
+  border-width: 0.25
+  height: $base-line-height-length * 2.8
+  vertical-align: bottom
+  padding: [$base-line-height-length / 5, 3, 5, 3]
+  recto: # <-- 右見開きページ
+    left:
+      content: '{chapter-title}' # <-- チャプタータイトル
+    right:
+      content: '{section-or-chapter-title}' # <-- セクションタイトル
+  verso: # <-- 左見開きページ
+    left:
+      content: '{document-title}' # <-- ドキュメントタイトル
+    right:
+      content: '{section-or-chapter-title}' # <-- セクションタイトル
+svg:
+  font_family: GenShinGothic-P

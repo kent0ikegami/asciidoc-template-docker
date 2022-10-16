@@ -20,7 +20,7 @@ jobs:
         id: documents
         uses: Analog-inc/asciidoctor-action@master
         with:
-          shellcommand: "asciidoctor src/index.adoc -r asciidoctor-diagram --destination-dir ./dist/ -o index.html && cp -rf ./src/images/ ./dist/images/"
+          shellcommand: "asciidoctor src/index.adoc -r asciidoctor-diagram --destination-dir ./dist/ -o index.html && cp -rf ./src/images/ ./dist/images/ && asciidoctor-pdf -D ./dist/ -a pdf-theme=src/assets/theme-pdf.yml -a pdf-fontsdir=src/assets/fonts -a scripts=cjk -r asciidoctor-diagram -b pdf -o index.pdf src/index.adoc"
       # ビルド結果をdeployジョブに渡すためにアップロード。
       - name: Upload build result
         uses: actions/upload-artifact@v3
