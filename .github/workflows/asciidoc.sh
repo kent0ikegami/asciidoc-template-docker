@@ -6,8 +6,8 @@ mkdir -p ./dist/
 CURRENT_PATH=`pwd`
 ASCIIDOCTOR_PDF_DIR=`gem contents asciidoctor-pdf --show-install-dir`
 
-# cp "${ASCIIDOCTOR_PDF_DIR}/data/themes/default-theme.yml" ${CURRENT_PATH}/themes/default-theme.yml
-# cp -r -f "${ASCIIDOCTOR_PDF_DIR}/data/fonts/" ${CURRENT_PATH}/
+cp "./src/resource/themes/default-theme.yml" ${CURRENT_PATH}/themes/default-theme.yml
+cp -r -f "./src/resource/fonts/" ${CURRENT_PATH}/
 
 
 # -a, --attribute=ATTRIBUTE
