@@ -2,6 +2,7 @@
 set -e
 
 mkdir -p ./dist/
+mkdir -p ./themes/
 
 CURRENT_PATH=`pwd`
 ASCIIDOCTOR_PDF_DIR=`gem contents asciidoctor-pdf --show-install-dir`
