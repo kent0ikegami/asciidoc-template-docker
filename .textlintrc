@@ -3,7 +3,7 @@
     "allowlist": {
       "allow": [
         "いいえ",
-        "フラッシュ"
+        "/@startuml[\\s\\S]*?@enduml/m"
       ]
     }
   },

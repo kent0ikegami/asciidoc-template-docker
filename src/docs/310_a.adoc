@@ -14,3 +14,54 @@ function 機能A() {
     機能を実行する
 }
 ----
+
+.サンプルプログラム（C++）
+[source,cpp,linenums,start=12,fontsize=3]
+----
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//  テンプレート関数
+template <typename T>
+T add(T x, T y){
+    return x + y;
+}
+
+int main(){
+    cout << add<int>(4, 3) << endl;               // <1>
+    cout << add<string>("ABC", "DEF") << endl;    // <2>
+    cout << add(1, 2) << endl;                  //  両方ともintの場合、型指定省略可能
+    return 0;
+}
+----
+<1> 数値でadd関数を利用
+<2> stringでaddを利用
+（略）
+
+.「メンバーの登録」
+[plantuml, requirement.business-flow.management.article-mng.add, svg, align="center"]
+....
+@startuml
+
+|新規メンバー|
+start
+:管理者権限のメンバーにアカウントの登録依頼をする;
+
+|#AntiqueWhite|既存メンバー|
+
+partition メンバーweb {
+  :アカウントを作成する;
+  if (すでに存在する) then (はい)
+    :法人への所属を与える;
+  else (いいえ)
+  endif
+}
+
+|新規メンバー|
+:メンバーサイトにログインする;
+stop
+
+@enduml
+....

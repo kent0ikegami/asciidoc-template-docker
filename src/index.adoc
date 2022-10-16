@@ -1,28 +1,30 @@
+:kroki-server-url: http://localhost:8000
+:author: kent ikegami
 :lang: ja
 :doctype: book
 :toc: left
-:toclevels: 3
 :toc-title: 目次
+:toclevels: 3
+:sectnumlevels: 3
 :sectnums:
-:sectnumlevels: 4
-:sectlinks:
+:chapter-signifier:
 :icons: font
+:imagesdir: images
 :source-highlighter: highlightjs
-:example-caption: 例
-:table-caption: 表
+:appendix-caption: 付録
 :figure-caption: 図
-:appendix-caption: Apx.
-:imagesdir: ./images
-
-:docmaintitle: サンプルシステム
-:docsubtitle: 外部仕様書
-:orgname: Sample Co. Ltd.
-:author: サンプル開発部
-:revnumber: 1.0
-:revdate: 2022/08/17
-
+:table-caption: 表
+:listing-caption: リスト
+:example-caption: 例
+:note-caption: 注記
+:tip-caption: ヒント 
+:coution-caption: 注意 
+:warning-caption: 警告
+:important-caption: 重要
+:last-update-label: 最終更新 
+:version-label: Ver.
 :scripts: cjk
-:docinfo: shared,private-header
+
 
 = サンプルシステム外部仕様書
 
