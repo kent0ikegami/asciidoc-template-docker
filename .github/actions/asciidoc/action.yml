@@ -1,0 +1,16 @@
+name: 'Convert AsciiDoctor Docker Action'
+branding:
+  icon: 'book-open'  
+  color: 'white'
+description: 'AsciiDoc Convert action'
+inputs:
+    shellcommand:  # id of input
+        description: 'AsciiDoc Convert command'
+        required: true
+        default: 'asciidoctor index.adoc'
+
+runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    args:
+        - ${{ inputs.shellcommand }}

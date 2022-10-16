@@ -18,7 +18,7 @@ jobs:
       # ビルドHTML
       - name: Build AsciiDoc step
         id: documents
-        uses: Analog-inc/asciidoctor-action@master
+        uses: ./.github/actions/asciidoc
         with:
           shellcommand: "./.github/workflows/asciidoc.sh"
       # ビルド結果をdeployジョブに渡すためにアップロード。
