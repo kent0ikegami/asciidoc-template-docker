@@ -21,6 +21,6 @@ ASCIIDOCTOR_PDF_DIR=`gem contents asciidoctor-pdf --show-install-dir`
 
 asciidoctor -D ${CURRENT_PATH}/dist/ -o index.html -r asciidoctor-diagram ${CURRENT_PATH}/src/index.adoc
 
-# asciidoctor-pdf -a pdf-theme=${CURRENT_PATH}/src/assets/theme-pdf.yml -a pdf-fontsdir=${CURRENT_PATH}/src/assets/fonts -B ${CURRENT_PATH}/src/ -D ${CURRENT_PATH}/dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram index.adoc
+asciidoctor-pdf -a pdf-theme=${CURRENT_PATH}/src/assets/theme-pdf.yml -a pdf-fontsdir=${CURRENT_PATH}/src/assets/fonts -D ${CURRENT_PATH}/dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram ${CURRENT_PATH}/src/index.adoc
 
 cp -rf ./src/images/ ./dist/images/
