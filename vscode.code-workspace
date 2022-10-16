@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "textlint.run": "onType",
+    "textlint.languages": [
+        "asciidoc"
+    ]
+  },
+  
+}

@@ -1,0 +1,75 @@
+name: run-deploy-aws
+# developまたはmainブランチへ Pull Request がマージされた時のみ実行。
+on:
+  pull_request:
+    branches: [ develop, main ]
+    types: [ closed ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    name: Build AsciiDoctor
+    steps:
+      # チェックアウト
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      # ビルドHTML
+      - name: Build AsciiDoc step
+        id: documents
+        uses: Analog-inc/asciidoctor-action@master
+        with:
+          shellcommand: "asciidoctor src/index.adoc -r asciidoctor-diagram -a stylesheet=./src/assets/base-custom-html.css --destination-dir ./dist/ -o index.html && cp -rf ./src/images/ ./dist/images/"
+      # ビルド結果をdeployジョブに渡すためにアップロード。
+      - name: Upload build result
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      # ビルド結果をダウンロード。
+      - name: Download build result
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: dist/
+      # S3にアップロード。
+      - name: Publish to AWS S3
+        uses: opspresso/action-s3-sync@master
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          FROM_PATH: "dist/"
+          DEST_PATH: "s3://${{ secrets.AWS_S3_BUCKET }}" # s3://{作成時に指定したバケット名}
+      # 以下はrelease/x.y.zブランチをmainにマージした時のみ。
+      # mainブランチにタグx.y.zを打つ。
+      - name: Create tag
+        id: create-tag
+        if: github.base_ref == 'main' && startsWith(github.head_ref, 'release')
+        run: |
+          TAG_NAME=$(echo ${{ github.head_ref }} | sed 's/release\///')
+          echo "::set-output name=tag-name::${TAG_NAME}"
+          echo $TAG_NAME
+      # 作成した HTML と PDF を GitHub Pages の./x.y.z以下にデプロイする。
+      - name: Publish to AWS S3 release
+        uses: opspresso/action-s3-sync@master
+        if: github.base_ref == 'main' && startsWith(github.head_ref, 'release')
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          FROM_PATH: "dist/"
+          DEST_PATH: "s3://${{ secrets.AWS_S3_BUCKET }}/${{ steps.create-tag.outputs.tag-name }}" # s3://{作成時に指定したバケット名}/path
+      # CloudFrontのキャッシュクリア。
+      - name: Clear cache in CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION }} # E2NT*****ABC のような形式。
+          PATHS: "/*"
+          AWS_REGION: us-east-1
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
