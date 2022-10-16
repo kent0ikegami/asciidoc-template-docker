@@ -7,8 +7,8 @@ mkdir -p ./themes/
 CURRENT_PATH=`pwd`
 ASCIIDOCTOR_PDF_DIR=`gem contents asciidoctor-pdf --show-install-dir`
 
-cp "./src/resource/themes/default-theme.yml" ${CURRENT_PATH}/themes/default-theme.yml
-cp -r -f "./src/resource/fonts/" ${CURRENT_PATH}/
+# cp "./src/resource/themes/default-theme.yml" ${CURRENT_PATH}/themes/default-theme.yml
+# cp -r -f "./src/resource/fonts/" ${CURRENT_PATH}/
 
 
 # -a, --attribute=ATTRIBUTE
@@ -22,6 +22,6 @@ cp -r -f "./src/resource/fonts/" ${CURRENT_PATH}/
 
 asciidoctor -D ./dist/ -o index.html -r asciidoctor-diagram ./src/index.adoc
 
-asciidoctor-pdf -a source-highlighter=pygments -r ./src/resource/patch-prawn.rb -D ./dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram ./src/index.adoc
+asciidoctor-pdf -a pdf-theme=./resource/theme-pdf.yml -a pdf-fontsdir=./resource/fonts -a source-highlighter=pygments -r ./resource/patch-prawn.rb -D ./dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram ./src/index.adoc
 # -a pdf-theme=./src/resource/theme-pdf.yml -a pdf-fontsdir=./src/resource/fonts
 cp -rf ./src/images/ ./dist/images/
