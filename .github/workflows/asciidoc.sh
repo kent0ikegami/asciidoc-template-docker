@@ -23,6 +23,6 @@ cp -r -f "${ASCIIDOCTOR_PDF_DIR}/data/fonts/" ${CURRENT_PATH}/src/resource/fonts
 
 asciidoctor -D ./dist/ -o index.html -r asciidoctor-diagram ./src/index.adoc
 
-asciidoctor-pdf -a df-styledir=${CURRENT_PATH}/src/resource/themes/ -a pdf-fontsdir=${CURRENT_PATH}/src/resource/fonts/ -a source-highlighter=pygments -r ./src/resource/patch-prawn.rb -D ./dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram ./src/index.adoc
+asciidoctor-pdf -a df-styledir=${CURRENT_PATH}/src/resource/themes/ pdf-style=${CURRENT_PATH}/src/resource/themes/user-theme.yml -a pdf-fontsdir=${CURRENT_PATH}/src/resource/fonts/ -a source-highlighter=pygments -r ./src/resource/patch-prawn.rb -D ./dist/ -o index.pdf -a scripts@=cjk -r asciidoctor-diagram ./src/index.adoc
 # -a pdf-theme=./src/resource/theme-pdf.yml -a pdf-fontsdir=./src/resource/fonts
 cp -rf ./src/images/ ./dist/images/
