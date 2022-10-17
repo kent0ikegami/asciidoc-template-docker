@@ -54,7 +54,7 @@ codespan:
   font_family: $base_font_family
   border-offset: 2
 title_page:
-  background_image: title-page-back02.png
+  background_image: title-page-back.png
   align: center
   title:
     top: 25%
