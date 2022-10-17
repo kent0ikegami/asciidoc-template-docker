@@ -1,13 +1,13 @@
 name: run-deploy-aws
 # developまたはmainブランチへ Pull Request がマージされた時のみ実行。
 on:
-  push:
-    branches:
-      - develop
+  pull_request:
+    branches: [ develop, main ]
+    types: [ closed ]
 jobs:
   build:
     runs-on: ubuntu-latest
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     name: Build AsciiDoctor
     steps:
       # チェックアウト

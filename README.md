@@ -3,7 +3,7 @@
 
 Asciidoc を使った仕様書の構成管理・CI/CD環境の雛形です。
 
-詳細は[記事](https://qiita.com/ynitto/items/fa44aae90c927e52613c)を参照してください。
+この[記事](https://qiita.com/ynitto/items/fa44aae90c927e52613c)を参考にしています。
 
 
 ## 導入
@@ -52,6 +52,7 @@ vscodeのasciidoctorの設定で、Change Preview Security Settings → Allow in
 MIT License
 
 Copyright (c) 2022 @kent0ikegami <add aws deploy settings> https://github.com/kent0ikegami/asciidoc-template
+
 Copyright (c) 2022 @ynitto <original> https://github.com/ynitto/asciidoc-template
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

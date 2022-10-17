@@ -45,14 +45,14 @@ jobs:
           publish_dir: ./dist
           destination_dir: ${{ steps.create-tag.outputs.tag-name }}
           keep_files: true
-      # # 作成した HTML と PDF を GitHub の Releases にアップロードする。
-      # - name: Create release
-      #   if: github.base_ref == 'main' && startsWith(github.head_ref, 'release')
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     name: ${{ steps.create-tag.outputs.tag-name }}
-      #     tag_name: ${{ steps.create-tag.outputs.tag-name }}
-      #     generate_release_notes: true
-      #     files: dist/index.pdf
-      #     draft: false
-      #     prerelease: false
+      # 作成した HTML と PDF を GitHub の Releases にアップロードする。
+      - name: Create release
+        if: github.base_ref == 'main' && startsWith(github.head_ref, 'release')
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.create-tag.outputs.tag-name }}
+          tag_name: ${{ steps.create-tag.outputs.tag-name }}
+          generate_release_notes: true
+          files: dist/index.pdf
+          draft: false
+          prerelease: false
