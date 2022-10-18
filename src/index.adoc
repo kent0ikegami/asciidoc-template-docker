@@ -26,7 +26,7 @@
 :scripts: cjk
 
 
-= サンプルシステム外部仕様書
+= Sample System: 『〇〇アプリケーション』 仕様書
 
 == 背景と目的
 include::docs/100_background.adoc[leveloffset=+1]
